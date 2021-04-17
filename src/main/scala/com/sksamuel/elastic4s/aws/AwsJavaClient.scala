@@ -1,9 +1,9 @@
 package com.sksamuel.elastic4s.aws
 
-import com.sksamuel.elastic4s.{ElasticClient, ElasticsearchClientUri}
+import com.sksamuel.elastic4s.ElasticProperties
 import software.amazon.awssdk.auth.credentials.{AwsBasicCredentials, AwsCredentialsProviderChain, StaticCredentialsProvider}
 import software.amazon.awssdk.regions.providers.DefaultAwsRegionProviderChain
-import com.sksamuel.elastic4s.http.JavaClient
+import com.sksamuel.elastic4s.http.{JavaClient, NoOpRequestConfigCallback}
 import org.elasticsearch.client.RestClientBuilder.HttpClientConfigCallback
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder
 import org.apache.http.protocol.HttpContext
@@ -20,8 +20,8 @@ object AwsJavaClient {
    * Creates ES HttpClient with aws4 request signer interceptor using custom config (key, secret, region and service).
    */
   def apply(config: Aws4ElasticConfig): JavaClient = {
-    val elasticUri = ElasticsearchClientUri(config.endpoint)
-    JavaClient(elasticUri, httpClientConfigCallback = new SignedClientConfig(config))
+    val elasticUri = ElasticProperties(config.endpoint)
+    JavaClient(elasticUri, NoOpRequestConfigCallback, new SignedClientConfig(config))
   }
 
   /**
@@ -29,8 +29,8 @@ object AwsJavaClient {
    * See <a href="http://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html">amazon environment variables documentation</a>
    */
   def apply(endpoint: String): JavaClient = {
-    val elasticUri = ElasticsearchClientUri(endpoint)
-    JavaClient(elasticUri, httpClientConfigCallback = new DefaultSignedClientConfig)
+    val elasticUri = ElasticProperties(endpoint)
+    JavaClient(elasticUri, NoOpRequestConfigCallback, new DefaultSignedClientConfig)
   }
 
 }
