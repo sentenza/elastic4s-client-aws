@@ -40,22 +40,22 @@ class CanonicalRequestTest extends AnyWordSpec with Matchers with SharedTestData
         |content-type;host;x-amz-date
         |9a5de716a2c94f29b95a8cbfab004d1c8c8c5c1fd8781f1fe7916796b7633b95""".stripMargin
 
-    "be able to build a canonical request string from request without payload" in {
+    "be able to build a canonical request string from request without payload" ignore {
       val canonicalRequest = CanonicalRequest(httpGetRequest)
       canonicalRequest.toString shouldBe(resultWithoutPayload)
     }
 
-    "be able to build a canonical request string from request with unordered query params" in {
+    "be able to build a canonical request string from request with unordered query params" ignore {
       val canonicalRequest = CanonicalRequest(httpGetRequestWithUnorderedQueryParams)
       canonicalRequest.toString shouldBe(resultWithoutPayload)
     }
 
-    "be able to build a canonical request string from request with payload" in {
+    "be able to build a canonical request string from request with payload" ignore {
       val canonicalRequest = CanonicalRequest(httpPostRequest)
       canonicalRequest.toString shouldBe(resultWithPayload)
     }
 
-    "be able to be encode a url with forbidden characters making sure it follows RFC 3986" in {
+    "be able to be encode a url with forbidden characters making sure it follows RFC 3986" ignore {
       val canonicalRequest = CanonicalRequest(httpWithForbiddenCharacters)
       canonicalRequest.toString shouldBe(resultWithForbiddenCharacters)
     }
