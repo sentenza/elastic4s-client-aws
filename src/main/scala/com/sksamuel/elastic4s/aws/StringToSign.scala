@@ -19,5 +19,5 @@ case class StringToSign(service: String,
     s"""$Algorithm
        |$dateTime
        |$credentialsScope
-       |${canonicalRequest.toHashString.toLowerCase}""".stripMargin
+       |${canonicalRequest.toHashString().toLowerCase}""".stripMargin
 }
