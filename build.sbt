@@ -4,6 +4,8 @@ organization := "com.github.pjfanning"
 
 scalaVersion := "2.13.5"
 
+crossScalaVersions := Seq("2.12.12", "2.13.5")
+
 ThisBuild / scalacOptions ++= Seq("-encoding", "UTF-8", "-deprecation", "-unchecked")
 
 val awsSdkVersion = "2.16.43"
@@ -21,3 +23,35 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "3.2.7" % Test
 )
 
+publishMavenStyle := true
+
+Test / publishArtifact := false
+
+pomIncludeRepository := { x => false }
+
+homepage := Some(new URL("https://github.com/pjfanning/elastic4s-client-aws"))
+
+startYear := Some(2021)
+
+licenses := Seq(("Apache License 2.0", new URL("http://www.apache.org/licenses/LICENSE-2.0.html")))
+
+releasePublishArtifactsAction := PgpKeys.publishSigned.value
+
+pomExtra := (
+  <scm>
+    <connection>scm:git:git@github.com:pjfanning/elastic4s-client-aws.git</connection>
+    <developerConnection>scm:git:git@github.com:pjfanning/elastic4s-client-aws.git</developerConnection>
+    <url>https://github.com/pjfanning/elastic4s-client-aws</url>
+  </scm>
+  <issueManagement>
+    <system>github</system>
+    <url>https://github.com/pjfanning/elastic4s-client-aws/issues</url>
+  </issueManagement>
+  <developers>
+    <developer>
+      <id>sksamuel</id>
+      <name>Sam Samuel</name>
+      <url>https://github.com/sksamuel</url>
+    </developer>
+  </developers>
+)
