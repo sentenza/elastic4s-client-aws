@@ -8,7 +8,7 @@ crossScalaVersions := Seq("2.12.12", "2.13.5")
 
 ThisBuild / scalacOptions ++= Seq("-encoding", "UTF-8", "-deprecation", "-unchecked")
 
-val awsSdkVersion = "2.16.43"
+val awsSdkVersion = "2.16.63"
 val elastic4sVersion = "7.12.0"
 
 libraryDependencies ++= Seq(
@@ -20,7 +20,7 @@ libraryDependencies ++= Seq(
   "software.amazon.awssdk" % "core" % awsSdkVersion,
   "software.amazon.awssdk" % "regions" % awsSdkVersion,
   "software.amazon.awssdk" % "regions" % awsSdkVersion,
-  "org.scalatest" %% "scalatest" % "3.2.7" % Test
+  "org.scalatest" %% "scalatest" % "3.2.9" % Test
 )
 
 publishMavenStyle := true
