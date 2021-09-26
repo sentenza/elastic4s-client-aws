@@ -10,9 +10,9 @@ class Aws4RequestSignerTest extends AnyWordSpec with Matchers with SharedTestDat
   "Aws4RequestSigner" should {
 
     val result =
-      """AWS4-HMAC-SHA256 Credential=AKIDEXAMPLE/20150830/us-east-1/es/aws4_request, SignedHeaders=content-type;host;x-amz-date, Signature=6aab780be5a6c06d0a7cc4528756dae4394e3c99b5d81bd4b07a745ab5a90735""".stripMargin
+      """AWS4-HMAC-SHA256 Credential=AKIDEXAMPLE/20150830/us-east-1/es/aws4_request, SignedHeaders=content-type;host;x-amz-date, Signature=1cd028739dd9da8786adc77de75d00f36ae1b3a2b76f13195cd7bea6af500032""".stripMargin
 
-    "be able to add amazon compliant authentication header" ignore {
+    "be able to add amazon compliant authentication header" in {
 
       val chainProvider = StaticCredentialsProvider.create(AwsBasicCredentials.create(awsKey, awsSecret))
       val signer = new Aws4TestRequestSigner(chainProvider, region, date, dateTime)
