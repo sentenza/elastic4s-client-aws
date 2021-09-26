@@ -11,9 +11,9 @@ class StringToSignTest extends AnyWordSpec with Matchers with SharedTestData {
       """AWS4-HMAC-SHA256
         |20150830T123600Z
         |20150830/us-east-1/es/aws4_request
-        |5fab998086fcbea8299a5c08a7698e48dbb67a6c4aa91276acaef121cd40edec""".stripMargin
+        |4f4206baa1babbea405d47f83cfd8262f06b89b6f3ad187be581a3e5f09d40c8""".stripMargin
 
-    "be able to build instance from region, service and canonicalRequest " ignore {
+    "be able to build instance from region, service and canonicalRequest " in {
 
       val canonicalRequest = CanonicalRequest(httpGetRequest)
       val stringToSign = StringToSign(service, region, canonicalRequest, date, dateTime)
