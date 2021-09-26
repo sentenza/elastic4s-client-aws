@@ -2,9 +2,9 @@ name := "elastic4s-client-aws"
 
 organization := "com.github.pjfanning"
 
-scalaVersion := "2.13.6"
+ThisBuild / scalaVersion := "2.13.6"
 
-crossScalaVersions := Seq("2.12.15", "2.13.6")
+ThisBuild / crossScalaVersions := Seq("2.12.15", "2.13.6")
 
 ThisBuild / scalacOptions ++= Seq("-encoding", "UTF-8", "-deprecation", "-unchecked")
 
@@ -63,3 +63,7 @@ pomExtra := (
     </developer>
   </developers>
 )
+
+ThisBuild / githubWorkflowJavaVersions := Seq("adopt@1.8")
+ThisBuild / githubWorkflowTargetTags ++= Seq("v*")
+
