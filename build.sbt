@@ -66,4 +66,4 @@ pomExtra := (
 
 ThisBuild / githubWorkflowJavaVersions := Seq("adopt@1.8")
 ThisBuild / githubWorkflowTargetTags ++= Seq("v*")
-
+ThisBuild / githubWorkflowPublishTargetBranches:= Seq()

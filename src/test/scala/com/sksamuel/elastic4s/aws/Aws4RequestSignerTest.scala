@@ -9,8 +9,10 @@ class Aws4RequestSignerTest extends AnyWordSpec with Matchers with SharedTestDat
 
   "Aws4RequestSigner" should {
 
-    val result =
-      """AWS4-HMAC-SHA256 Credential=AKIDEXAMPLE/20150830/us-east-1/es/aws4_request, SignedHeaders=content-type;host;x-amz-date, Signature=1cd028739dd9da8786adc77de75d00f36ae1b3a2b76f13195cd7bea6af500032""".stripMargin
+    val expectedResultBase =
+      """AWS4-HMAC-SHA256 Credential=AKIDEXAMPLE/20150830/us-east-1/es/aws4_request, SignedHeaders=content-type;host;x-amz-date, Signature"""
+    val expectedResult1 = s"$expectedResultBase=1cd028739dd9da8786adc77de75d00f36ae1b3a2b76f13195cd7bea6af500032"
+    val expectedResult2 = s"$expectedResultBase=d8c78396c1d76727137608ee747c6204d4064ddab567d7be982376bd0e1f4d8d"
 
     "be able to add amazon compliant authentication header" in {
 
@@ -18,7 +20,7 @@ class Aws4RequestSignerTest extends AnyWordSpec with Matchers with SharedTestDat
       val signer = new Aws4TestRequestSigner(chainProvider, region, date, dateTime)
       val withHeaders = signer.withAws4Headers(httpPostRequest)
       withHeaders.getAllHeaders find (_.getName == "Authorization") match {
-        case Some(header) => header.getValue shouldBe (result)
+        case Some(header) => header.getValue shouldBe (expectedResult1)
         case _            => 1 shouldBe (0)
       }
     }
@@ -34,26 +36,26 @@ class Aws4RequestSignerTest extends AnyWordSpec with Matchers with SharedTestDat
       }
     }
 
-    "be able to add date time header when none is found" ignore {
+    "be able to add date time header when none is found" in {
       val credentials = AwsSessionCredentials.create(awsKey, awsSecret, awsSessionToken)
       val chainProvider = StaticCredentialsProvider.create(credentials)
       val signer = new Aws4TestRequestSigner(chainProvider, region, date, dateTime)
 
       val withHeaders = signer.withAws4Headers(httpPostRequestWithoutDate)
       withHeaders.getAllHeaders find (_.getName == "Authorization") match {
-        case Some(header) => header.getValue shouldBe (result)
+        case Some(header) => header.getValue shouldBe (expectedResult1)
         case _            => 1 shouldBe (0)
       }
     }
 
-    "be able to clean bad Host headers" ignore {
+    "be able to clean bad Host headers" in {
       val credentials = AwsSessionCredentials.create(awsKey, awsSecret, awsSessionToken)
       val chainProvider = StaticCredentialsProvider.create(credentials)
       val signer = new Aws4TestRequestSigner(chainProvider, region, date, dateTime)
 
       val withHeaders = signer.withAws4Headers(httpPostRequestWithBadHost)
       withHeaders.getAllHeaders find (_.getName == "Authorization") match {
-        case Some(header) => header.getValue shouldBe (result)
+        case Some(header) => header.getValue shouldBe (expectedResult2)
         case _            => 1 shouldBe (0)
       }
     }
