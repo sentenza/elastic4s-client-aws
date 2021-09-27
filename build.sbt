@@ -8,8 +8,8 @@ ThisBuild / crossScalaVersions := Seq("2.12.15", "2.13.6")
 
 ThisBuild / scalacOptions ++= Seq("-encoding", "UTF-8", "-deprecation", "-unchecked")
 
-val awsSdkVersion = "2.17.43"
-val elastic4sVersion = "7.13.0"
+val awsSdkVersion = "2.17.46"
+val elastic4sVersion = "7.14.1"
 
 libraryDependencies ++= Seq(
   "com.sksamuel.elastic4s" %% "elastic4s-core" % elastic4sVersion,
