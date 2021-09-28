@@ -19,7 +19,6 @@ libraryDependencies ++= Seq(
   "software.amazon.awssdk" % "auth" % awsSdkVersion,
   "software.amazon.awssdk" % "core" % awsSdkVersion,
   "software.amazon.awssdk" % "regions" % awsSdkVersion,
-  "software.amazon.awssdk" % "regions" % awsSdkVersion,
   "org.scalatest" %% "scalatest" % "3.2.10" % Test
 )
 
