@@ -46,11 +46,6 @@ licenses := Seq(("Apache License 2.0", new URL("http://www.apache.org/licenses/L
 releasePublishArtifactsAction := PgpKeys.publishSigned.value
 
 pomExtra := (
-  <scm>
-    <connection>scm:git:git@github.com:pjfanning/elastic4s-client-aws.git</connection>
-    <developerConnection>scm:git:git@github.com:pjfanning/elastic4s-client-aws.git</developerConnection>
-    <url>https://github.com/pjfanning/elastic4s-client-aws</url>
-  </scm>
   <issueManagement>
     <system>github</system>
     <url>https://github.com/pjfanning/elastic4s-client-aws/issues</url>
