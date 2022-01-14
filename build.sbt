@@ -5,9 +5,6 @@ val elastic4sVersion = "7.16.3"
 
 lazy val buildSettings = Seq(
   organization := "io.kontainers",
-  homepage := Some(new URL("https://github.com/kontainers/elastic4s-client-aws")),
-  licenses := Seq(("Apache License 2.0", new URL("http://www.apache.org/licenses/LICENSE-2.0.html"))),
-  startYear := Some(2021),
   scalaVersion := "2.13.8",
   crossScalaVersions := Seq("2.12.15", scalaVersion.value)
 )
@@ -15,6 +12,10 @@ lazy val buildSettings = Seq(
 lazy val publishSettings = Seq(
   publishMavenStyle := true,
   Test/ publishArtifact := false,
+  versionScheme := Some("early-semver"),
+  homepage := Some(new URL("https://github.com/kontainers/elastic4s-client-aws")),
+  licenses := Seq(("Apache License 2.0", new URL("http://www.apache.org/licenses/LICENSE-2.0.html"))),
+  startYear := Some(2021),
   releasePublishArtifactsAction := PgpKeys.publishSigned.value,
   publishTo := Some(
     if (isSnapshot.value)
