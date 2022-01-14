@@ -28,10 +28,6 @@ lazy val publishSettings = Seq(
         <system>github</system>
         <url>https://github.com/kontainers/elastic4s-client-aws/issues</url>
       </issueManagement>
-      <scm>
-        <url>git@github.com:kontainers/elastic4s-client-aws.git</url>
-        <connection>scm:git:git@github.com:kontainers/elastic4s-client-aws.git</connection>
-      </scm>
       <developers>
         <developer>
           <id>sksamuel</id>
