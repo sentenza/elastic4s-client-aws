@@ -55,6 +55,6 @@ pomExtra := (
   </developers>
 )
 
-ThisBuild / githubWorkflowJavaVersions := Seq(JavaSpec.temurin("adopt@1.8"))
+ThisBuild / githubWorkflowJavaVersions := Seq(JavaSpec.temurin("11.0.13"))
 ThisBuild / githubWorkflowTargetTags ++= Seq("v*")
 ThisBuild / githubWorkflowPublishTargetBranches:= Seq()
