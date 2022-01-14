@@ -12,6 +12,7 @@ val awsSdkVersion = "2.17.111"
 val elastic4sVersion = "7.16.3"
 
 libraryDependencies ++= Seq(
+  "org.scala-lang.modules" %% "scala-collection-compat" % "2.6.0",
   "com.sksamuel.elastic4s" %% "elastic4s-core" % elastic4sVersion,
   "com.sksamuel.elastic4s" %% "elastic4s-client-esjava" % elastic4sVersion,
   "com.sksamuel.exts" %% "exts" % "1.61.1",
