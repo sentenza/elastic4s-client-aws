@@ -24,14 +24,6 @@ lazy val publishSettings = Seq(
       Opts.resolver.sonatypeStaging),
   pomIncludeRepository := { x => false },
   pomExtra := (
-      <url>https://github.com/kontainers/elastic4s-client-aws</url>
-      <licenses>
-        <license>
-          <name>Apache2</name>
-          <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-          <distribution>repo</distribution>
-        </license>
-      </licenses>
       <issueManagement>
         <system>github</system>
         <url>https://github.com/kontainers/elastic4s-client-aws/issues</url>
@@ -49,6 +41,7 @@ lazy val publishSettings = Seq(
         <developer>
           <id>sentenza</id>
           <name>Alfredo Torre</name>
+          <url>https://github.com/sentenza</url>
         </developer>
       </developers>
     )
