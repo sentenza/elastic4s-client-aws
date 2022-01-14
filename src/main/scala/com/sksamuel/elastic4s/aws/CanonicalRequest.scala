@@ -1,14 +1,15 @@
 package com.sksamuel.elastic4s.aws
 
 import com.sksamuel.elastic4s.aws.Crypto._
-import java.net.{URI, URLEncoder}
 
+import java.net.{URI, URLEncoder}
 import org.apache.http.{HttpEntityEnclosingRequest, HttpRequest}
 import org.apache.http.client.methods.HttpRequestWrapper
 import org.apache.http.client.utils.{URIBuilder, URLEncodedUtils}
 import org.apache.http.util.EntityUtils
 
-import scala.collection.JavaConverters._
+import java.nio.charset.Charset
+import scala.jdk.CollectionConverters._
 
 /**
  * Canonical Request is described as the first task when signing aws requests (version 4)
@@ -56,13 +57,13 @@ object CanonicalRequest {
 
   private def canonicalQueryString(httpRequest: HttpRequest): String = {
     val uri        = new URI(httpRequest.getRequestLine.getUri)
-    val parameters = URLEncodedUtils.parse(uri, "utf-8")
+    val parameters = URLEncodedUtils.parse(uri, Charset.forName("UTF-8"))
     parameters.asScala.sortBy(_.getName).map(h => s"${h.getName}=${h.getValue}").mkString("&")
   }
 
   private def canonicalHeaders(httpRequest: HttpRequest): String =
     httpRequest
-      .getAllHeaders()
+      .getAllHeaders
       .sortBy(_.getName.toLowerCase)
       .filterNot(h => ignoredHeaders.contains(h.getName.toLowerCase))
       .map(h => s"${h.getName.toLowerCase}:${h.getValue.trim}")
@@ -100,7 +101,7 @@ case class CanonicalRequest(method: String,
                             signedHeaders: String,
                             hashedPayload: String) {
 
-  override def toString() =
+  override def toString: String =
     s"""$method
        |$canonicalUri
        |$canonicalQueryString
@@ -109,7 +110,7 @@ case class CanonicalRequest(method: String,
        |$signedHeaders
        |$hashedPayload""".stripMargin
 
-  def toHashString() = {
+  def toHashString(): String = {
     val canonicalRequestHash = hash(toString)
     hexOf(canonicalRequestHash)
   }
